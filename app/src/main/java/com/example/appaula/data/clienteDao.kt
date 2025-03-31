@@ -19,6 +19,9 @@ interface clienteDao {
     @Delete
     suspend fun delete(cliente: cliente)
 
-    @Query("SELECT * from clientes")
-    fun listar(): Flow<List<cliente>> // As funções de query nao precisam ser "suspend fun" por conta que não alteram algo no banco de dados
+    @Query("SELECT * from clientes WHERE id = :id")
+    fun getUser(id: Int): Flow<cliente>
+
+    @Query("SELECT * from clientes ORDER BY nome ASC")
+    fun getAllIUser(): Flow<List<cliente>>
 }

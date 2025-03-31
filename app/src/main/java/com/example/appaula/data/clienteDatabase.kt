@@ -2,6 +2,7 @@ package com.example.appaula.data
 
 import android.content.Context
 import androidx.room.Database
+import androidx.room.Room
 import androidx.room.RoomDatabase
 
 @Database(
@@ -18,7 +19,7 @@ abstract class clienteDatabase : RoomDatabase() {
 
         fun getDatabase(context: Context): clienteDatabase {
             return Instance ?: synchronized(this) {
-                Room.databaseBuilder(context, InventoryDatabase::class.java, "item_database")
+                Room.databaseBuilder(context, clienteDatabase::class.java, "item_database")
                     .build()
                     .also { Instance = it }
             }
